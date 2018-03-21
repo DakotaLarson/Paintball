@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Paintball:jar">
+    <output-path>$USER_HOME$/Desktop/Testing Server/plugins</output-path>
+    <root id="archive" name="Paintball.jar">
+      <element id="module-output" name="Paintball" />
+    </root>
+  </artifact>
+</component>

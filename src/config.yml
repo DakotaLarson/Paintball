@@ -1,0 +1,864 @@
+#This is the main configuration file for Paintball
+#The server must be reloaded in order to force changes
+#Make sure to review this file carefully before integrating this plugin
+#Paintball will attempt to make all options usable even if they are ludicrous.
+#That being said, please ensure that you enter valid and reasonable values.
+#This is to prevent errors from surfacing from a poorly constructed configuration.
+
+general:
+    #Maximim number of players allowed to play, -1 for no limit
+    maxPlayers: -1
+    #Minimum number of players allowed to play, no less than 2
+    minPlayers: 2
+    #Time between when a match countdown starts and when players are ported to the next arena in seconds. Minimum of 5
+    countdownTime: 30
+    #Time between when players are ported to the next arena and when the game begins in seconds
+    #This serves to eliminate any sort of teleportation glitch. Minimum of 5
+    initializationTime: 15
+    #Boolean value for whether players need permission to select team during initialization
+    #Permission value for this is paintball.selectteam
+    selectTeam: false
+    #Boolean value for whether name tags should be hidden from opponents
+    hideTagsFromOpponents: true
+    #Boolean value for whether name tags should be hidden from teammates
+    hideTagsFromTeam: false
+    #Boolean value for whether to enhance gameplay with direct modification of server code
+    #If the server produces errors, set this to false
+    useNMSCode: true
+    #The boolean value for whether to color armor based on hits
+    colorArmor: true
+    #The boolean value for whether players should bleed on hits
+    bleedOnHit: true
+    #The boolean value for a firework launch on death
+    fireworkOnDeath: true
+    #Time the flag will remain on the ground after it is dropped in seconds
+    #Note that a flag dropped in water on on a block with complex metadata will be returned instantly
+    #A flag that is returned automatically will not award its team any points for said return
+    flagDropTime: 30
+    #Boolean value for whether players will need to break the block of the flag in order to grab it
+    #Note that if this is set to false, then players will only need to click on the block
+    flagBreakToGrab: false
+    #Boolean value for whether a dropped flag should emit fireworks
+    flagDropFW: true
+    #Time in seconds players are protected after respawning
+    spawnProtection: 5
+    #Boolean value for whether to send clickable messages to players
+    sendClickableMessages: true
+    #Boolean value to allow enable voting if enough arenas are created
+    enableVoting: true
+    #Boolean value to enable the necessity of permissions in relation to voting
+    votingPermission: false
+    #The number of arenas that are listed for voting(Between 2-8)
+    votingArenaCount: 4
+    #Boolean value to add an voting option of a random arena
+    enableRandomArena: true
+    #Boolean value for whether to allow users to vote for the next arena via the Voting Block
+    useVotingBlock: true
+    #Boolean value for whether to color chat messages when the player is in a match
+    colorText: true
+    #Boolean value for whether to enable respawn tokens or not
+    #These are tokens that players earn in game and can be used to respawn in a faster manner
+    enableTokens: true
+    #The number of tokens that are needed to respawn early
+    neededTokens: 1
+    #Boolean value for whether to force players into the lobby on join
+    autoJoin: true
+    #Boolean value for whether to force players into the lobby after a reload
+    joinOnReload: true
+    #Boolean value to assert the world of the spawn as a paintball only world
+    #If this is set to true, then players will be joined to the game based on whether they are in the world
+    paintballWorld: false
+    #Boolean value to force updates of the player inventory
+    #Set this to true if ItemStacks to not appear to be removed during gameplay
+    updateInv: false
+    #Boolean value to set the helmets of flag holders to wool blocks.
+    flagHats: true
+    #This is the file name of the yml file that contains all messages in the game.
+    #If you wish to use different text options than what are available by default,
+    #then you MUST create a new file, with ALL messages copied over.
+    #This file must be renamed here. If it isn't then, the default file will be used.
+    #Updates will most likely render your file invalid if new content is added.
+    #Therefore, you will have to translate any additional lines that are created,
+    #and add them to your custom file.
+    messageFileName: messages
+    #Boolean value to use command prefixes
+    #The prefix is pb so /join would be converted to /pb join
+    #Use this to avoid plugin conflict.
+    useCommandPrefixes: false
+    #Bolean value to print exceptions relating to SQL calls
+    #Set this to true to report errors if they occur in the console.
+    sqlDebug: false
+    #Boolean value to allow the swapping of hands.
+    handSwap: false
+    teamColors:
+        red: '&4'
+        blue: '&1'
+        dead: '&8'
+    commandObj:
+        #Boolean value to enable a command object in the additional actions inventory
+        enabled: true
+        #Command that is ran on interaction replace player name with %player% (No / before command)
+        command: leaveall
+        #Boolean value to have the server execute this command
+        #If false, then the player executes this command
+        consoleExecution: false
+        #Type of item used
+        #Please refer to this resource to correctly title the resource
+        itemType: REDSTONE
+        #The title or display name of the item
+        itemTitle: '&6&lLeave Paintball'
+        #the lore, seen directly below the title
+        itemLore:
+        - '&3&lCompletely leave the game'
+gamemodes:
+    TDM:
+        #The max time for the game (in seconds)
+        time: 300
+        #Boolean value for to have a cooldown after death
+        deathBox: false
+        #Boolean value to use individual timers in the deathBox
+        useTimers: true
+        #The time in seconds for respawning
+        deathTime: 15
+        #The max number of kills required to end the game (-1 to disable)
+        maxKills: -1
+        #The number of hits needed to attain a kill
+        hits: 3
+    CTF:
+        #The max time for the game (in seconds)
+        time: 300
+        #Boolean value for to have a cooldown after death
+        deathBox: true
+        #Boolean value to use individual timers in the deathBox
+        useTimers: false
+        #The time in seconds for respawning
+        deathTime: 15
+        #The max number of captures required to end the game (-1 to disable)
+        maxCaptures: -1
+        #The number of hits needed to attain a kill
+        hits: 3
+    RTF:
+        #The max time for the game (in seconds)
+        time: 300
+        #Boolean value for to have a cooldown after death
+        deathBox: true
+        #Boolean value to use individual timers in the deathBox
+        useTimers: true
+        #The time in seconds for respawning
+        deathTime: 15
+        #The max number of captures required to end the game (-1 to disable)
+        maxCaptures: -1
+        #The number of hits needed to attain a kill
+        hits: 3
+    ELM:
+        #The max time for the game (in seconds)
+        time: 300
+        #Boolean value for to have a cooldown after death
+        deathBox: true
+        #Boolean value to use individual timers in the deathBox
+        useTimers: true
+        #The time in seconds for respawning
+        deathTime: 15
+        #The max number of deaths for each player
+        maxDeaths: 3
+        #The number of hits needed to attain a kill
+        hits: 3
+weapons:
+    #Default amount of paintballs given to each player
+    ammoCount: 64
+    #Boolean value for whether to allow players to shoot paintballs with the left mouse button
+    useLeft: true
+    #Boolean value for whether to allow players to shoot paintballs with the right mouse button
+    useRight: true
+    #Boolean value to use the other button to function as a reloader.
+    #If you have both used to fire the paintball gun, then this does nothing.
+    useOther: true
+    #The speed multiplier added to shot paintballs, speeds over 4 will look glitchy
+    ballSpeed: 2.5
+    #The boolean value for whether to enable kits or not
+    kitsEnabled: true
+    #Time needed to reload paintballs in seconds
+    reloadTime: 5
+    #Boolean value to allow other projectiles to instantly kill players(recommended)
+    instantKill: true
+    #Punches count for 1 hit
+    #Boolean value to allow all kits to enable punching
+    punchForAll: true
+    #Boolean value to allow some kits to enable punching
+    punchForSome: false
+    #A list of kits that can punch, can be used to limit the ability to a select few
+    #Ensure kit titles are in lower case
+    kitsThatCanPunch:
+    - sniper
+    - bomber
+    #Set the paintball sound here, use NONE to play no sound
+    paintballSound: 
+        sound: 'ITEM_FLINTANDSTEEL_USE'
+        volume: 2.0
+        pitch: 1.0
+points:
+    hit: 1
+    kill: 2
+    flagGrab: 5
+    flagPickup: 5
+    flagDrop: 5
+    flagCapture: 15
+    flagReturn: 5
+    matchWin: 10
+    matchParticipation: 5
+currency:
+    #Currency a way to allow players to earn kits through playing the game
+    #Boolean value to enable currency
+    enableCurrency: true
+    #Boolean value for whether to announce kit purchases or not
+    announcePurchase: true
+    #These are the commands run when a player purchases a kit
+    #The deducation of currency will take place regardless of the success of this command
+    #Replacements: %name% %kit% If more are needed, please contact THEREDBARON24
+    #Example: pex user %name% add paintball.kit.%kit% (For PermissionsEx) (No '/' char!)
+    commands:
+    -
+    #The following options are prices in currency of the kits, -1 to disable purchase
+    prices:
+        dasher: 1000
+        grenadier: 1000
+        sprayer: 1000
+        sniper: 1000
+        bomber: 1000
+        demo: 1000
+        rocketman: 1000
+        blaster: 1000
+        gunner: 1000
+        reloader: 1000
+        healer: 1000
+        heavy: 1000
+        blocker: 1000
+        blinder: 1000
+        charger: 1000
+        juggernaut: 1000
+        bouncer: 1000
+    #The following options are values that will be awarded in currency
+    distribution:
+        hit: 1
+        kill: 2
+        flagGrab: 5
+        flagPickup: 5
+        flagDrop: 5
+        flagCapture: 15
+        flagReturn: 5
+        matchWin: 10
+        matchParticipation: 5
+database:
+    #Paintball requires the use of a database in order to save player statistics.
+    #If Paintball is unable to connect to the database, the plugin will not enable.
+    #Information entered here is not tracked in any way by Paintball.
+    host: host
+    port: port
+    database: database
+    username: username
+    password: password
+    #Set this value to true, so Paintball knows that you have entered in proper details.
+    notDefault: false
+deathMessages:
+    #Configure death messages here
+    #These are broadcasted messages sent to all players in the game
+    #Use %killed% and %killer% for the respective players
+    #Said names will be colored based on team
+    #This accepts standard color codes as well with the '&' character.
+    standard:
+    - '%killer% &efragged %killed%'
+    blaster:
+    - '%killer% &eblasted %killed%'
+    blinder:
+    - '%killer% &ekilled %killed%'
+    bomber:
+    - '%killer% &ebombed %killed%'
+    demo:
+    - '%killer% &etripped up %killed%'
+    grenadier:
+    - '%killer% &eblew up %killed%'
+    gunner:
+    - '%killer% &egunned down %killed%'
+    rocketman:
+    - '%killer% &egibbed %killed%'
+    sniper:
+    #Note that this is the only instance where distance can be added
+    - '%killer% &eshot %killed% &efrom &b%distance% &emeters'
+    sprayer:
+    - '%killer% &eshot down %killed%'
+    bouncer:
+    #Played only when a bouncing snowball kills an enemy
+    - '%killer% &ebounce shot %killed%'
+    void:
+    #Killer will return null here
+    - '%killed% &efell to a clumsy death'
+    punch:
+    - '%killer% &epunched %killed%'
+ranks:
+    #Ranks are a way to distinguish the status of players
+    #Colors that are defined for chat use the color code system
+    #Boolean value for whether to use ranks or not
+    #Note that commands are only run when points change for players in game
+    enabled: true
+    #Boolean value to show chat prefixes
+    useChatPrefix: true
+    #Color value '&a'or the braces of that chat prefix
+    chatPrefix: '&a'
+    #The rank titles add or remove as many as you desire
+    #Keep titles in lower case, they will be formatted in chat
+    #Ensure that the format of this configuration is preserved
+    #Values for color are between 0 and 255
+    #Commands replace %name% with the player name
+    titles:
+        Private:
+            color:
+                red: 255
+                green: 255
+                blue: 255
+            textColor: '&f'
+            pointsNeeded: 0
+            commandsToRun:
+            - None
+        Specialist:
+            color:
+                red: 255
+                green: 255
+                blue: 85
+            textColor: '&e'
+            pointsNeeded: 250
+            commandsToRun:
+             - None
+        Corporal:
+            color:
+                red: 255
+                green: 85
+                blue: 255
+            textColor: '&d'
+            pointsNeeded: 500
+            commandsToRun:
+            - None
+        Sergeant:
+            color:
+                red: 85
+                green: 255
+                blue: 255
+            textColor: '&b'
+            pointsNeeded: 1000
+            commandsToRun:
+            - None
+        Officer:
+            color:
+                red: 85
+                green: 85
+                blue: 85
+            textColor: '&8'
+            pointsNeeded: 2500
+            commandsToRun:
+            - None
+        Lieutenant:
+            color:
+                red: 170
+                green: 170
+                blue: 170
+            textColor: '&7'
+            pointsNeeded: 5000
+            commandsToRun:
+            - None
+        Captain:
+            color:
+                red: 255
+                green: 170
+                blue: 0
+            textColor: '&6'
+            pointsNeeded: 10000
+            commandsToRun:
+            - None
+        Major:
+            color:
+                red: 170
+                green: 0
+                blue: 170
+            textColor: '&5'
+            pointsNeeded: 25000
+            commandsToRun:
+            - None
+        Colonel:
+            color:
+                red: 0
+                green: 170
+                blue: 170
+            textColor: '&3'
+            pointsNeeded: 50000
+            commandsToRun:
+            - None
+        General:
+            color:
+                red: 0
+                green: 170
+                blue: 0
+            textColor: '&2'
+            pointsNeeded: 100000
+            commandsToRun:
+            - None
+kits:
+    #Configuration for the individual kits in Paintball
+    #if permissions are needed, they will be paintball.kit.<kitName>
+    
+    #A lower value of the charger kit
+    dasher:
+        enabled: true
+        permissionRequired: false
+        description: This kit allows players to move at a slightly higher rate of speed!
+        #The multiplier for how much faster players will move (between 2, the default speed, and 10, the max)
+        walkspeedMultiplier: 2.5
+        #Boolean value to add speed potion
+        addSpeedPotion: true
+        #Boolean value to add jump potion
+        addJumpPotion: false
+        #Duration of potion in seconds
+        speedPotTime: 30
+        jumpPotTime: 30
+        #Amplifier for the potion no less than 1
+        speedPotAmp: 1
+        jumpPotAmp: 1
+        #Number of potions to add
+        speedPotCount: 1
+        jumpPotCount: 1
+    
+    #A lower value kit of the bomber kit
+    grenadier:
+        enabled: true
+        permissionRequired: false
+        description: Players are in possession of a grenade!
+        #The multiplier for how much faster grenades will be thrown
+        speedMultiplier: 2.0
+        #The number of grenades each player automatically receives
+        grenadeCount: 1
+        #The number of paintballs released on impact
+        ballCount: 10
+        #The velocity of balls launched on impact
+        ballVelocity: 2.0
+        #Radius of damage on hit, will count as one hit point, -1 to disable
+        radius: 3.0
+    
+    #A lower value of the gunner kit
+    sprayer:
+        enabled: true
+        permissionRequired: false
+        description: Players carry a shotgun that shoots a spread of paintballs!
+        #The speed of the paintballs shot
+        speedMultiplier: 2.0
+        #The spread of the group, increases with given value
+        groupSpread: 3.0
+        #The time in seconds needed to cooldown
+        cooldown: 10
+        #The number of paintballs launched
+        groupSize: 10
+        #Amount of paintballs required
+        invPaintballsNeeded: 0
+        
+    #Obvious, instant kill
+    sniper:
+        enabled: true
+        permissionRequired: true
+        description: This kit allows users to make long range shots!
+        #Range in blocks, larger values will impact the server health
+        range: 150
+        #Boolean value for allowing shots through liquids
+        shootThroughLiquids: true
+        #Boolean value for allowing shots through glass.
+        shootThroughGlass: false
+        #Boolean value for whether to allow the sniper to disregard teammates
+        disregardTeammates: true
+        #Boolean value for whether to allow more than one player to be shot
+        continueIterAfterHit: true
+        #Time to cooldown in seconds
+        cooldown: 30
+        #Boolean value to use zoom.
+        #If this is true, players with the sniper kit can zoom when sneaking.
+        useZoom: true
+        
+    #A better version of the grenadier kit, unless configured differently
+    bomber:
+        enabled: true
+        permissionRequired: true
+        description: Players will be able to bomb the ememy with this kit!
+        #The speed multiplier of the bomb
+        speedMultiplier: 2.25
+        #The number of bombs held
+        bombCount: 3
+        #The number of balls released on detonation
+        ballCount: 15
+        #The velocity of balls fired during impact
+        ballVelocity: 2.0
+        #Radius of damage on hit, will count as one hit point, -1 to disable
+        radius: 4.0
+    
+    #A kit that allows for the placement of mines
+    demo:
+        enabled: true
+        permissionRequired: true
+        description: This kit allows users to place mines and wreak havoc on the ememy!
+        #Number of mines held
+        numberOfMines: 3
+        #Number of balls released when a mine is detonated
+        numberOfBalls: 10
+        #Velocity of balls released
+        ballVelocity: 2.0
+        #Radius of damage, set to -1 to disable
+        damageRadius: 4.0
+        #Boolean value for whether mines can be automatically detonated
+        canBeManuallyDetonated: true
+        
+    #A kit that allows for the launching of rockets
+    rocketman:
+        enabled: true
+        permissionRequired: true
+        description: Players will have the ability to launch high velocity rockets at the enemy!
+        #The speed multiplier, fireballs cane be reflected so adjust accordingly
+        speedMultiplier: 6.0
+        #The number of rockets players will carry
+        rocketCount: 3
+        #The number of snowballs released on contact
+        ballCount: 30
+        #The radius of damage upon impact
+        radius: 5.0
+        
+    #A version of the sprayer that has no cooldown
+    gunner:
+        enabled: true
+        permissionRequired: true
+        description: This kit allows players to shoot spreads of paintballs without delay!
+        #The speed of the paintballs shot
+        speedMultiplier: 2.0
+        #The spread of the group, increases with given value
+        groupSpread: 3.0
+        #The time in seconds needed to cooldown
+        groupSize: 5
+        #Amount of paintballs required
+        invPaintballsNeeded: 3
+    
+    #A kit that allows for a faster reload
+    reloader:
+        enabled: true
+        permissionRequired: true
+        description: Players will be able to reload faster with this kit!
+        #time in seconds it takes to reload. 
+        reloadTime: 3
+        #Boolean value for whether reloads take place automatically
+        reloadAuto: true
+        
+    #A kit that allows players to heal themselves or teammates
+    #Left click to heal self, right click to heal others
+    healer:
+        enabled: true
+        permissionRequired: true
+        description: This kit allows users to heal themselves or teammates!
+        #Amount of healing rods players will possess
+        healCount: 3
+        #Points to give when a player heals a teammate
+        teammateHealPoints: 10
+        #Currency added to a player when they heal a teammate
+        teammateHealCurrency: 50
+        
+    #A kit that allows users to carry more paintballs
+    heavy:
+        enabled: true
+        permissionRequired: true
+        description: Players are able to carry more ammunition with this kit!
+        #The amount of additional paintballs players will carry
+        paintballAmount: 64
+        
+    #A kit that allows users to become temporarily invincible to attacks
+    blocker:
+        enabled: true
+        permissionRequired: true
+        description: This kit allows users to be temporarily able to block some attacks!
+        #The number of activations allowed per life
+        blockingActivations: 1
+        #Time players are protected in seconds
+        blockingTime: 5
+        #Boolean value for blocking punches
+        blockPunches: false
+        #Boolean value to protect against direct hits from other prjectiles
+        blockOtherProjectiles: false
+        #Boolean value for whether players are able to hit enemies with blocking enabled if they sneak (Recommended)
+        sneakOverride: true
+        #Boolean value to reload the Paintball gun when a player becomes blocked. (Can nerf the kit)
+        reloadOnInit: false
+        #Boolean value to disabled the Paintball gun while blocked. (Can nerf the kit)
+        disablePBGun: false
+        
+    #A kit that allows users to blind enemies temporarily
+    blinder:
+        enabled: true
+        permissionRequired: true
+        description: Players that use this kit are able to launch projectiles that blind enemies!
+        #Velocity multiplier of the blinders
+        multiplier: 2.5
+        #Amount of blinders carried
+        blinderCount: 3
+        #Range of attacks in blocks
+        attackRange: 5.0
+        #Length of attack in seconds
+        attackLength: 5
+        
+    #A kit that allows players to move at a high rate of speed
+    charger:
+        enabled: true
+        permissionRequired: true
+        description: This kit allows users to move at a higher velocity!
+        #Multiplier for the walkspeed of players(between 2, the default speed, and 10, the max)
+        walkspeedMultiplier: 3.0
+        #Boolean value to add speed potion
+        addSpeedPotion: true
+        #Boolean value to add jump potion
+        addJumpPotion: true
+        #Duration of potion in seconds
+        speedPotTime: 30
+        jumpPotTime: 30
+        #Amplifier for the potion no less than 1
+        speedPotAmp: 2
+        jumpPotAmp: 2
+        #Number of potions to add
+        speedPotCount: 1
+        jumpPotCount: 1
+        
+    #A kit that allows players to take more damage
+    juggernaut:
+        enabled: true
+        permissionRequired: true
+        description: Players that use this kit are able to take more damage before death!
+        #The amount of additional paintball hits required for a kill
+        hitsForKill: 2
+    #A kit that allows for players to shoot bursts of paintballs
+    blaster:
+        enabled: true
+        permissionRequired: true
+        description: This kit allows players to shoot bursts with high accuracy!
+        #The number of balls shot per blast
+        ballCount: 3
+        #The speed of the balls blasted
+        ballSpeed: 3.5
+        #The interval in ticks between the balls being blasted
+        interval: 1
+        #The time in ticks between shots
+        cooldown: 5
+        #The number of balls needed from the inventory
+        invPaintballsNeeded: 2
+    bouncer:
+        enabled: true
+        permissionRequired: true
+        description: This kit allows players to shoot bouncing paintballs!
+        #The number of bounces that each paintball has in its life
+        #The max number of bounces is 25
+        bounces: 1
+        #Velocity of the bounced paintballs
+        #Once again, values over 4 will look glitchy
+        velocity: 1.5
+    respawner:
+        enabled: true
+        permissionRequired: true
+        description: This kit allows players to change where they respawn!
+        #Boolean value to ensure respawn blocks are placed in spaces originally filled with air.
+        #Setting this to false may result in blocks such as grass being removed.
+        ensureAir: true
+        #The number of seconds after respawn in which a block can be placed again
+        cooldownAfterRespawn: 15
+        #Boolean value to allow enemies to break respawn blocks
+        enemyBlockRemoval: true
+        #Boolean value to allow original placers to move block after placement
+        placerBlockChange: true
+killstreaks:
+    #Replacements: %cplayer% for colored player name, %player% for player name, %streak% for the kill count
+    #Boolean value to enable killstreaks
+    enabled: true
+    #Kills required to broadcast end of streak (-1 to disable)
+    killsRequired: 7
+    #Message that is sent out when enough kills were made
+    endOfStreak: '%cplayer% &bwas killed ending a streak of &6%streak% &bkills!'
+    streaks:
+        3: low
+        5: med 
+        7: high
+        10: high
+        15: high
+    values:
+        #Insert values here for what you want to happen at each streak
+        #The different strings you can use are as follows (Replace to with player, team, enemy, or all):
+        #message-[to]-[message] sends a message (accepts color codes '&')
+        #sound-[to]-[sound]-[volume]-[pitch] plays a sound (Ensure the sound is valid)
+        #token-[to]-[count] gives a number of respawn tokens
+        #paintball-[to]-[count] gives a number of paintballs
+        #speed-[to]-[time]-[power] gives a speed potion with a time and power
+        #health-[to] returns a player to full health
+        #disorient-[to]-[time]-[power]
+        #blind-[to]-[time]-[power]
+        #slow-[to]-[time]-[power]
+        #jump-[to]-[time]-[power]
+        #kit-[count]
+        low:
+            general:
+                #This boolean is used if you have a kit section here as well.
+                #If this is false, and a task is executed concerning the player's kit, this will not fire
+                use: true
+                tasks:
+                    - paintball-player-16
+                    - message-player-&aYou are on a 3 kill-streak!
+                    - sound-player-LEVEL_UP-1.0-1.0
+        med:
+            general:
+                use: true
+                tasks:
+                    - message-player-&aYou are on a 5 kill-streak!
+                    - sound-player-LEVEL_UP-1.0-1.0
+            kit:
+                none:
+                - paintball-player-16
+                dasher:
+                #No kit specific boosts
+                - speed-player-1-15
+                grenadier:
+                #Adds grenades
+                - kit-1
+                sprayer:
+                #Ends cooldown if it exists
+                #Sets cooldown to second argument if > 0
+                - kit-0
+                - paintball-player-16
+                sniper:
+                #Ends cooldown if it exists
+                #Sets cooldown to second argument if > 0
+                - kit-0
+                bomber:
+                #Adds bombs
+                - kit-2
+                demo:
+                #No kit specific boosts
+                - paintball-player-32
+                rocketman:
+                #Adds rockets
+                - kit-2
+                blaster:
+                #No kit specific boosts
+                - paintball-player-32
+                gunner:
+                #No kit specific boosts
+                - paintball-player-32
+                reloader:
+                #No kit specific boosts
+                - paintball-player-32
+                healer:
+                #Adds healing sticks
+                - kit-2
+                - paintball-player-16
+                - health-player
+                heavy:
+                #No kit specific boosts
+                - paintball-player-64
+                blocker:
+                #Adds blocking rods
+                - kit-1
+                blinder:
+                #Adds blinding charges
+                - kit-2
+                - blind-enemy-5-1
+                - slow-enemy-5-1
+                charger:
+                #No kit specific boosts
+                - paintball-player-16
+                - speed-player-2-15
+                juggernaut:
+                #Charges extra protection
+                - kit-0
+                bouncer:
+                #Changes the number of bounces for each paintball
+                #Sets bounce count to second argument if > 0
+
+                - kit-2
+        high:
+            general:
+                use: true
+                tasks:
+                    - message-all-%cplayer% &bis on a %streak% kill-streak!
+                    - sound-all-ANVIL_USE-1.0-1.0
+                    - token-player-1
+            kit:
+                none:
+                - paintball-player-32
+                dasher:
+                #No kit specific boosts
+                - speed-team-1-30
+                grenadier:
+                #Adds grenades
+                - kit-2
+                sprayer:
+                #Removes cooldown if one exists
+                #Sets cooldown to second argument if > 0
+                - kit-0
+                - paintball-player-32
+                sniper:
+                #Ends cooldown if it exists
+                #Sets cooldown to second argument if > 0
+                - kit-0
+                bomber:
+                #Adds bombs
+                - kit-2
+                demo:
+                #No kit specific boosts
+                - paintball-player-32
+                rocketman:
+                #Adds rockets
+                - kit-3
+                blaster:
+                #No kit specific boosts
+                - paintball-player-32
+                gunner:
+                #No kit specific boosts
+                - paintball-player-64
+                reloader:
+                #No kit specific boosts
+                - paintball-player-32
+                healer:
+                #Adds healing sticks
+                - kit-2
+                - paintball-player-16
+                - health-team
+                heavy:
+                #No kit specific boosts
+                - paintball-player-64
+                blocker:
+                #Adds blocking rods
+                - kit-1
+                blinder:
+                #Adds blinding charges
+                - kit-3
+                - blind-enemy-5-1
+                - slow-enemy-5-1
+                charger:
+                #No kit specific boosts
+                - paintball-player-16
+                - speed-team-2-30
+                juggernaut:
+                #Charges extra protection
+                - kit-0
+                bouncer:
+                #Changes the number of bounces for each paintball
+                #Sets bounce count to second argument if > 0
+                - kit-3
+motd:
+    #MOTD Control - Have the MOTD dynamically updated based on Paintball Game Status
+    enabled: false
+    #The game is not started (Usually due to a lack of players)
+    notStarted: "&3Paintball &f- &eNot Started"
+    #The countdown has started (Players may be voting at this time if enabled)
+    countingDown: "&3Paintball &f- &bCounting Down"
+    #The players have been moved to the arena in which they are going to play
+    # %arena% available
+    initializing: "&3Paintball &f- &aMatch Initializing &f(&3%arena%&f)"
+    #The game is running.
+    # %arena% is available
+    running: "&3Paintball &f- &2Match Running &f(&3%arena%&f)"
+    #The game is finalizing; Players are being moved back to the lobby.
+    finalizing: "&3Paintball &f- &5Match Finalizing"
+#End of File.
